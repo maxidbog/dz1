@@ -4,7 +4,7 @@ namespace OrderReporter.Application.Interfaces;
 
 public interface IReportWriter
 {
-    public void WriteReport(Report report);
+    void WriteReport(Report report);
 
-    public void WriteReports(IEnumerable<Report> reports);
+    void WriteReports(IEnumerable<Report> reports);
 }
