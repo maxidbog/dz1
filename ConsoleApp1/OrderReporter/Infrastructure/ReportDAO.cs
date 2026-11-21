@@ -22,10 +22,12 @@ public class ReportDAO : IReportDAO
         var clientOrders = ReadCSV()
             .Where(x => x.ClientId == clientId)
             .ToArray();
-        
+
         if (clientOrders.Length == 0)
+        {
             throw new ClientNotFoundException(clientId);
-        
+        }
+
         return clientOrders
             .GroupBy(x => x.ItemName)
             .OrderByDescending(g => g.Sum(x => x.ItemQuantity))
@@ -39,7 +41,9 @@ public class ReportDAO : IReportDAO
             .ToArray();
 
         if (clientOrders.Length == 0)
+        {
             throw new ClientNotFoundException(clientId);
+        }
 
         return clientOrders
             .Sum(x => x.ItemQuantity * x.ItemPrice);

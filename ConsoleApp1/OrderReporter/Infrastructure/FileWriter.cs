@@ -11,7 +11,9 @@ public class FileWriter : IReportWriter
     {
         _reportsDirectory = Path.Combine(AppContext.BaseDirectory, "reports");
         if (!Directory.Exists(_reportsDirectory))
+        {
             Directory.CreateDirectory(_reportsDirectory);
+        }
     }
     public void WriteReport(Report report)
     {
