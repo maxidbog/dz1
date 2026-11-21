@@ -8,10 +8,28 @@ public class ConsoleReader : IConsoleReader
     {
         Console.WriteLine("Введите id клиентов через пробел:");
         var ids = Console.ReadLine();
-        return string.IsNullOrWhiteSpace(ids)
-            ? Array.Empty<long>()
-            : ids.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries)
-                .Select(long.Parse)
-                .ToArray();
+
+        if (string.IsNullOrWhiteSpace(ids))
+        {
+            return Array.Empty<long>();
+        }
+
+        var clientIds = new List<long>();
+
+        foreach (var value in ids.Split(
+                     (char[]?)null,
+                     StringSplitOptions.RemoveEmptyEntries))
+        {
+            if (long.TryParse(value, out var clientId))
+            {
+                clientIds.Add(clientId);
+            }
+            else
+            {
+                Console.Error.WriteLine($"Некорректный id клиента: {value}");
+            }
+        }
+
+        return clientIds.ToArray();
     }
 }
