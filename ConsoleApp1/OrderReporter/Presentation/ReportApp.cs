@@ -10,7 +10,10 @@ public class ReportApp
     private readonly IReportService _reportService;
     private readonly IReportWriterFactory _reportWriterFactory;
 
-    public ReportApp(IConsoleReader consoleReader, IReportWriterFactory writerFactory, IReportService service)
+    public ReportApp(
+        IConsoleReader consoleReader,
+        IReportWriterFactory writerFactory,
+        IReportService service)
     {
         _consoleReader = consoleReader;
         _reportWriterFactory = writerFactory;
